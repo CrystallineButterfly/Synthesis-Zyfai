@@ -3,11 +3,13 @@ from __future__ import annotations
 import importlib
 import json
 import os
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 LOG_PATH = REPO_ROOT / 'agent_log.json'
+sys.path.insert(0, str(REPO_ROOT))
 MODULE_NAME = 'agents.zyfai_engine'
 
 
