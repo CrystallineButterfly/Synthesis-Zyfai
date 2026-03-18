@@ -1,0 +1,16 @@
+[project]
+name = "synthesis_zyfai"
+version = "0.1.0"
+description = "A yield-aware operator that measures available yield, budgets compute spend, and prepares payout plans for AI workloads."
+readme = "README.md"
+requires-python = ">=3.13"
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ty.terminal]
+error-on-warning = true
+
+[tool.ty.environment]
+python-version = "3.13"

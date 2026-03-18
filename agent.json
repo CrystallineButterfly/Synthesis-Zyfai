@@ -1,0 +1,41 @@
+{
+  "name": "YieldMind Engine",
+  "repo_name": "Synthesis-Zyfai",
+  "license": "MIT",
+  "primary_track": "Zyfai",
+  "submission_status": "hold_until_human_confirms_registration_and_submission",
+  "identity": {
+    "erc8004_status": "pending_live_registration",
+    "operator_wallet": "TODO",
+    "treasury_wallet": "TODO",
+    "ens_name": "TODO"
+  },
+  "compute_budget": {
+    "daily_usd_cap": 25,
+    "per_action_usd_cap": 2,
+    "live_mode_default": false
+  },
+  "safety_controls": [
+    "dry_run_required",
+    "whitelist_targets",
+    "spend_caps",
+    "time_window_permissions",
+    "env_only_secrets",
+    "pause_switch"
+  ],
+  "autonomy_loop": [
+    "discover",
+    "plan",
+    "dry_run",
+    "execute",
+    "verify"
+  ],
+  "overlap_targets": [
+    "Bankr Gateway",
+    "PayWithLocus",
+    "Venice Private Agents",
+    "ERC-8004 Receipts",
+    "Uniswap Agentic Finance",
+    "Lido stETH Treasury"
+  ]
+}

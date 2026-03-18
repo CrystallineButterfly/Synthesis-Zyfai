@@ -1,0 +1,9 @@
+flowchart TD
+    Signals[Zyfai signals] --> Discover[Discover]
+    Discover --> Plan[Plan bounded action]
+    Plan --> DryRun[Dry run + policy check]
+    DryRun --> Guard[YieldMindController]
+    Guard --> Execute[Execute when live mode is enabled]
+    Execute --> Verify[Verify proofs + receipts]
+    Verify --> Persist[Write agent_log.json + submission snippet]
+    Persist --> Storage[Store proof plan for Filecoin / receipts]
