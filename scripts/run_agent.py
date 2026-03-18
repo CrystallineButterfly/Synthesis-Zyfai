@@ -37,8 +37,7 @@ def append_log(stage: str, message: str) -> None:
     """Append a structured event to agent_log.json."""
     data = json.loads(LOG_PATH.read_text(encoding='utf-8'))
     data.append({'stage': stage, 'actor': 'run_agent', 'message': message})
-    LOG_PATH.write_text(json.dumps(data, indent=2) + '
-', encoding='utf-8')
+    LOG_PATH.write_text(json.dumps(data, indent=2) + '\\n', encoding='utf-8')
 
 
 def discover(context: dict[str, object]) -> dict[str, object]:
