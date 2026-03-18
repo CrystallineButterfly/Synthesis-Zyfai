@@ -1,5 +1,7 @@
 
 .env
+.env.*
+!.env.example
 .venv/
 __pycache__/
 .pytest_cache/
@@ -9,3 +11,12 @@ cache/
 broadcast/
 lib/**/.git
 *.pyc
+*.pem
+*.key
+*.p12
+*.keystore
+*.seed
+credentials/
+secrets/
+wallets/
+TODO.md
