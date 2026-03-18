@@ -23,6 +23,8 @@ contract AutonomousActionHub is AutonomousActionCore {
     }
 
     uint256 public principalFloor;
+    uint256 public trackedLiquidBalance;
+    uint64 public lastBalanceReportAt;
     mapping(bytes32 => Profile) public profiles;
     mapping(bytes32 => QueuedTask) public queuedTasks;
 
@@ -30,6 +32,9 @@ contract AutonomousActionHub is AutonomousActionCore {
     error ProfileMissing(bytes32 subjectId);
     error UnknownTask(bytes32 actionId);
     error TaskAlreadyExecuted(bytes32 actionId);
+    error BalanceNotReported();
+
+    event LiquidBalanceReported(uint256 liquidBalance, uint64 reportedAt);
 
     constructor(
         address admin,
@@ -47,8 +52,18 @@ contract AutonomousActionHub is AutonomousActionCore {
         principalFloor = newPrincipalFloor;
     }
 
-    function spendableBuffer(uint256 liquidBalance) public view returns (uint256) {
-        return liquidBalance > principalFloor ? liquidBalance - principalFloor : 0;
+    function reportLiquidBalance(uint256 liquidBalance)
+        external
+        onlyRole(REPORTER_ROLE)
+        whenNotPaused
+    {
+        trackedLiquidBalance = liquidBalance;
+        lastBalanceReportAt = uint64(block.timestamp);
+        emit LiquidBalanceReported(liquidBalance, lastBalanceReportAt);
+    }
+
+    function spendableBuffer() public view returns (uint256) {
+        return trackedLiquidBalance > principalFloor ? trackedLiquidBalance - principalFloor : 0;
     }
 
     function executeBoundedAction(
@@ -56,10 +71,13 @@ contract AutonomousActionHub is AutonomousActionCore {
         address target,
         bytes4 selector,
         uint256 amount,
-        uint256 liquidBalance,
         bytes32 callHash
     ) external onlyRole(OPERATOR_ROLE) whenNotPaused nonReentrant returns (bytes32) {
-        if (amount > spendableBuffer(liquidBalance)) {
+        uint256 liquidBalance = trackedLiquidBalance;
+        if (lastBalanceReportAt == 0) {
+            revert BalanceNotReported();
+        }
+        if (amount > spendableBuffer()) {
             revert PrincipalFloorBreached(liquidBalance, principalFloor, amount);
         }
         _consumePolicy(actionId, amount);
@@ -68,6 +86,7 @@ contract AutonomousActionHub is AutonomousActionCore {
             abi.encode(actionId, target, selector, amount, liquidBalance, callHash)
         );
         executionDigests[actionId] = digest;
+        trackedLiquidBalance = liquidBalance - amount;
         return digest;
     }
 
@@ -145,13 +164,21 @@ contract AutonomousActionHub is AutonomousActionCore {
         if (task.executed) {
             revert TaskAlreadyExecuted(actionId);
         }
+        uint256 liquidBalance = trackedLiquidBalance;
+        if (lastBalanceReportAt == 0) {
+            revert BalanceNotReported();
+        }
+        if (task.amount > spendableBuffer()) {
+            revert PrincipalFloorBreached(liquidBalance, principalFloor, task.amount);
+        }
         _consumePolicy(actionId, task.amount);
         _enforceTargetAndSelector(task.target, task.selector);
         task.executed = true;
         bytes32 digest = keccak256(
-            abi.encode(actionId, task.target, task.selector, task.amount, callHash)
+            abi.encode(actionId, task.target, task.selector, task.amount, liquidBalance, callHash)
         );
         executionDigests[actionId] = digest;
+        trackedLiquidBalance = liquidBalance - task.amount;
         return digest;
     }
 }

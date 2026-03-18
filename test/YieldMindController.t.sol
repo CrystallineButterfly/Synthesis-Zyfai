@@ -22,6 +22,8 @@ contract YieldMindControllerTest is Test {
         controller.setTargetApproval(target, true);
         controller.setSelectorApproval(selector, true);
         vm.stopPrank();
+        vm.prank(reporter);
+        controller.reportLiquidBalance(150 ether);
     }
 
     function testExecuteBoundedActionStoresDigest() public {
@@ -31,10 +33,10 @@ contract YieldMindControllerTest is Test {
             target,
             selector,
             10 ether,
-            150 ether,
             keccak256("call")
         );
         assertEq(controller.executionDigests(actionId), digest);
+        assertEq(controller.trackedLiquidBalance(), 140 ether);
     }
 
     function testRegisterProfileAndProof() public {
@@ -51,5 +53,25 @@ contract YieldMindControllerTest is Test {
         vm.prank(operator);
         bytes32 digest = controller.executeQueuedTask(actionId, keccak256("task-call"));
         assertEq(controller.executionDigests(actionId), digest);
+        assertEq(controller.trackedLiquidBalance(), 145 ether);
+    }
+
+    function testExecuteBoundedActionRevertsWithoutReportedBalance() public {
+        YieldMindController freshController = new YieldMindController(admin, operator, reporter, 100 ether);
+        vm.startPrank(admin);
+        freshController.configureActionPolicy(actionId, 20 ether, 40 ether, 1 hours, 0, 0);
+        freshController.setTargetApproval(target, true);
+        freshController.setSelectorApproval(selector, true);
+        vm.stopPrank();
+
+        vm.prank(operator);
+        vm.expectRevert(abi.encodeWithSignature("BalanceNotReported()"));
+        freshController.executeBoundedAction(
+            actionId,
+            target,
+            selector,
+            10 ether,
+            keccak256("call")
+        );
     }
 }

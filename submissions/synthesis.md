@@ -1,6 +1,6 @@
 # YieldMind Engine
 
-- **Repo:** https://github.com/CrystallineButterfly/Synthesis-Zyfai
+- **Repo:** TODO_GITHUB_URL/Synthesis-Zyfai
 - **Primary track:** Zyfai
 - **Overlap targets:** Bankr Gateway, PayWithLocus, Venice Private Agents, ERC-8004 Receipts, Uniswap Agentic Finance, Lido stETH Treasury
 - **Primary contract:** YieldMindController
@@ -18,10 +18,10 @@ A yield-aware operator that measures available yield, budgets compute spend, and
   "status": "verified",
   "project_name": "YieldMind Engine",
   "track": "Zyfai",
-  "plan_id": "0x265587186ec47c32be77841c6c0c5515322a0dd3c59fdf0b053d4497daa5cb5f",
-  "simulation_hash": "0x356b5c655db37864ddfeb32ca6b1e86c6de15ab6288ad87e76221ff1db81e4cc",
+  "plan_id": "0x1cc94e0fa95a07009a3f707cbfaeec89e60437323d5611fade1de31011ab5593",
+  "simulation_hash": "0x498db849276901a3c4b2723afd42a0e25b602a166ac4f4098fab50f92cbd43aa",
   "execution_status": "awaiting_credentials",
   "tx_ids": [],
-  "created_at": "2026-03-18T21:44:22+00:00"
+  "created_at": "2026-03-18T23:01:41+00:00"
 }
 ```

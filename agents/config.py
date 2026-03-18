@@ -19,6 +19,7 @@ class RuntimeConfig:
     reporter_wallet: str
     treasury_wallet: str
     operator_private_key: str
+    reporter_private_key: str
     deployed_contract_address: str
     initial_principal_floor: int
     max_compute_usd: int
@@ -34,6 +35,7 @@ class RuntimeConfig:
             reporter_wallet=os.getenv('REPORTER_WALLET_ADDRESS', ''),
             treasury_wallet=os.getenv('TREASURY_WALLET_ADDRESS', ''),
             operator_private_key=os.getenv('OPERATOR_PRIVATE_KEY', ''),
+            reporter_private_key=os.getenv('REPORTER_PRIVATE_KEY', ''),
             deployed_contract_address=os.getenv('DEPLOYED_CONTRACT_ADDRESS', ''),
             initial_principal_floor=int(os.getenv('INITIAL_PRINCIPAL_FLOOR', '0')),
             max_compute_usd=int(os.getenv('MAX_COMPUTE_USD', '25')),
@@ -46,6 +48,7 @@ class RuntimeConfig:
             'OPERATOR_WALLET_ADDRESS': self.operator_wallet,
             'REPORTER_WALLET_ADDRESS': self.reporter_wallet,
             'OPERATOR_PRIVATE_KEY': self.operator_private_key,
+            'REPORTER_PRIVATE_KEY': self.reporter_private_key,
         }
         return [k for k, v in required.items() if not v]
 

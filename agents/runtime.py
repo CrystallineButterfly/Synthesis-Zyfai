@@ -182,7 +182,7 @@ class AgentRuntime:
                     anchor_execution_receipt(
                         self.config.deployed_contract_address,
                         self.config.rpc_url,
-                        self.config.operator_private_key,
+                        self.config.reporter_private_key or self.config.operator_private_key,
                         action_ids[index] if index < len(action_ids) else simulation_hash,
                         self._stable_hash(result),
                     )
