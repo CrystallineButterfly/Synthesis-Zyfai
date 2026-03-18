@@ -1,117 +1,91 @@
 # YieldMind Engine
 
-        **Repo:** `Synthesis-Zyfai`  
-        **Primary track:** Zyfai  
-        **Submission hold:** wait for human approval before registration or live submission.
+- **Repo:** `Synthesis-Zyfai`
+- **Primary track:** Zyfai
+- **Category:** yield
+- **Submission status:** implementation ready, waiting for credentials and TxIDs.
 
-        A yield-aware operator that measures available yield, budgets compute spend, and prepares payout plans for AI workloads.
+A yield-aware operator that measures available yield, budgets compute spend, and prepares payout plans for AI workloads.
 
-        ## Selected concept
+## Selected concept
 
-        A yield-aware operator loop measures available yield, budgets compute spend, and prepares payout plans for AI workloads. The contract side captures subaccount rules, proof hashes, and treasury checkpoints so Zyfai-specific live flows can be added later.
+A yield-aware operator loop measures available yield, budgets compute spend, and prepares payout plans for AI workloads. The contract side captures subaccount rules, proof hashes, and treasury checkpoints so Zyfai-specific live flows can be added later.
 
-        ## Idea set
+## Idea shortlist
 
-        1. Yield-Powered AI Wallet
+1. Yield-Powered AI Wallet
 2. Subaccount Compute Treasury
 3. Programmable Yield Router
 
-        ## Prize overlap targets
+## Partners covered
 
-        - Bankr Gateway
-- PayWithLocus
-- Venice Private Agents
-- ERC-8004 Receipts
-- Uniswap Agentic Finance
-- Lido stETH Treasury
+Zyfai, Bankr Gateway, PayWithLocus, Venice, ERC-8004 Receipts, Uniswap, Lido
 
-        ## Architecture
+## Architecture
 
-        ```mermaid
-        flowchart TD
-    Signals[Zyfai signals] --> Discover[Discover]
-    Discover --> Plan[Plan bounded action]
-    Plan --> DryRun[Dry run + policy check]
-    DryRun --> Guard[YieldMindController]
-    Guard --> Execute[Execute when live mode is enabled]
-    Execute --> Verify[Verify proofs + receipts]
-    Verify --> Persist[Write agent_log.json + submission snippet]
-    Persist --> Storage[Store proof plan for Filecoin / receipts]
-        ```
+```mermaid
+flowchart TD
+    Signals[Discover signals]
+    Planner[Agent runtime]
+    DryRun[Dry-run artifact]
+    Contract[YieldMindController policy contract]
+    Verify[Verify and render submission]
+    Signals --> Planner --> DryRun --> Contract --> Verify
+    Contract --> zyfai[Zyfai]
+    Contract --> bankr_gateway[Bankr Gateway]
+    Contract --> paywithlocus[PayWithLocus]
+    Contract --> venice[Venice]
+    Contract --> erc_8004_receipts[ERC-8004 Receipts]
+    Contract --> uniswap[Uniswap]
+```
 
-        ## Repo structure
+## Repository layout
 
-        ```text
-        Synthesis-Zyfai/
-├── README.md
-├── LICENSE
-├── .env.example
-├── .gitignore
-├── agent.json
-├── agent_log.json
-├── pyproject.toml
-├── Makefile
-├── docs/
-│   ├── architecture.mmd
-│   ├── demo_video_script.md
-│   └── security.md
-├── src/
-│   └── YieldMindController.sol
-├── script/
-│   └── Deploy.s.sol
-├── agents/
-│   ├── __init__.py
-│   └── zyfai_engine.py
-├── scripts/
-│   ├── run_agent.py
-│   └── plan_live_demo.py
-├── submissions/
-│   └── synthesis.md
-└── tests/
-    └── test_project_context.py
-        ```
+- `src/`: shared policy contracts plus the repo-specific wrapper contract.
+- `script/`: Foundry deployment entrypoint.
+- `agents/`: Python runtime, partner adapters, and project metadata.
+- `scripts/`: CLI utilities for running the loop and rendering submissions.
+- `docs/`: architecture, credentials, demo script, and security notes.
+- `submissions/`: generated `synthesis.md` snippet for this repo.
 
-        ## Tech stack
+## Action catalog
 
-        Solidity 0.8.24 skeleton, Python 3.13 standard library, JSON manifests, Foundry-style layout, MIT license
+| Action | Partner | Purpose | Max USD | Sensitivity |
+| --- | --- | --- | --- | --- |
+| `zyfai_yield_budget` | Zyfai | Use Zyfai for a bounded action in this repo. | $60 | medium |
+| `bankr_gateway_compute_route` | Bankr Gateway | Use Bankr Gateway for a bounded action in this repo. | $10 | high |
+| `paywithlocus_subaccount_pay` | PayWithLocus | Use PayWithLocus for a bounded action in this repo. | $120 | medium |
+| `venice_private_analysis` | Venice | Use Venice for a bounded action in this repo. | $5 | high |
+| `erc_8004_receipts_receipt_anchor` | ERC-8004 Receipts | Use ERC-8004 Receipts for a bounded action in this repo. | $1 | medium |
+| `uniswap_quote_route` | Uniswap | Use Uniswap for a bounded action in this repo. | $220 | medium |
+| `lido_yield_route` | Lido | Use Lido for a bounded action in this repo. | $200 | medium |
 
-        ## Security guardrails
+## Commands
 
-        - principal and spend policies are separated by design
-        - whitelist, cap, and cooldown checks gate every action
-        - dry-run hashes are recorded before any live execution path
-        - compute budgets are explicit and live mode is opt-in
-        - secrets are loaded from environment variables only
-        - structured logs are appended for every discover-plan-execute-verify step
+```bash
+python3 -m unittest discover -s tests
+forge test
+python3 scripts/run_agent.py
+python3 scripts/plan_live_demo.py
+python3 scripts/render_submission.py
+```
 
-        ## Autonomy loop
+## Credentials
 
-        1. Discover candidate signals and external state.
-2. Plan an action bundle with explicit budget, target, and purpose.
-3. Run a dry-run check and policy validation before any execution path.
-4. Execute only when live mode, wallets, and credentials are supplied.
-5. Verify receipts, proofs, and notes, then append structured logs.
+| Partner | Variables | Docs |
+| --- | --- | --- |
+| Zyfai | ZYFAI_API_KEY, ZYFAI_STRATEGY_URL | https://docs.zyf.ai/ |
+| Bankr Gateway | BANKR_API_KEY, BANKR_CHAT_COMPLETIONS_URL, BANKR_MODEL | https://bankr.bot/ |
+| PayWithLocus | LOCUS_API_KEY, LOCUS_PAYMENT_URL | https://docs.locus.finance/ |
+| Venice | VENICE_API_KEY, VENICE_CHAT_COMPLETIONS_URL, VENICE_MODEL | https://docs.venice.ai/ |
+| ERC-8004 Receipts | RPC_URL | https://eips.ethereum.org/EIPS/eip-8004 |
+| Uniswap | UNISWAP_API_KEY, UNISWAP_QUOTE_URL | https://developers.uniswap.org/ |
+| Lido | RPC_URL | https://docs.lido.fi/ |
 
-        ## Local MVP status
+## Live demo plan
 
-        - [x] README, manifests, and security notes created
-        - [x] contract and agent-loop skeletons created
-        - [x] local git repository initialized with an initial commit
-        - [ ] operator wallet addresses attached
-        - [ ] real API keys added through `.env`
-        - [ ] live TxIDs recorded
-        - [ ] registration and submission executed
-
-        ## Live demo and TxID plan
-
-        1. load real credentials into `.env`
-        2. run `python3 scripts/plan_live_demo.py` to print the checklist
-        3. replace placeholder wallet fields in `agent.json`
-        4. enable `LIVE_MODE=true` for controlled execution
-        5. record resulting TxIDs and paste them into `submissions/synthesis.md`
-
-        ## Why this ranks first
-
-        This concept ranks highest because it overlaps Bankr Gateway, PayWithLocus, Venice Private Agents while keeping the
-        execution envelope explicit, dry-run-first, and honest about what still needs
-        real credentials before anything touches a chain.
+1. Copy .env.example to .env and fill the required keys.
+2. Deploy the contract with forge script script/Deploy.s.sol --broadcast for YieldMindController.
+3. Run python3 scripts/run_agent.py to produce a dry run for zyfai_engine.
+4. Set LIVE_MODE=true and rerun python3 scripts/run_agent.py with real credentials.
+5. Run python3 scripts/render_submission.py and attach TxIDs plus repo links.

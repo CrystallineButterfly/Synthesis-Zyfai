@@ -1,20 +1,27 @@
 from __future__ import annotations
 
-import json
+import sys
+from pathlib import Path
 
-CHECKLIST = {
-    'project': 'YieldMind Engine',
-    'primary_track': 'Zyfai',
-    'steps': [
-        'add real wallet addresses to .env',
-        'add partner API keys to .env',
-        'update agent.json identity fields',
-        'run python3 scripts/run_agent.py in dry-run mode',
-        'enable LIVE_MODE=true for a controlled live pass',
-        'capture TxIDs and paste them into submissions/synthesis.md',
-    ],
-}
+REPO_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO_ROOT))
+
+from agents.zyfai_engine import build_project_spec
+
+
+def main() -> None:
+    """Print the live-demo checklist and partner setup links."""
+    spec = build_project_spec()
+    print(f'Project: {spec.project_name}')
+    print(f'Track: {spec.track}')
+    print('\nLive demo checklist:')
+    for index, step in enumerate(spec.live_demo_steps, start=1):
+        print(f'{index}. {step}')
+    print('\nPartner setup links:')
+    for partner in spec.partners:
+        envs = ', '.join(partner.env_vars) if partner.env_vars else 'Onchain only'
+        print(f'- {partner.name} -> {partner.docs_url} ({envs})')
 
 
 if __name__ == '__main__':
-    print(json.dumps(CHECKLIST, indent=2))
+    main()

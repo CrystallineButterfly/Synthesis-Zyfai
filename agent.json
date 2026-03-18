@@ -3,25 +3,29 @@
   "repo_name": "Synthesis-Zyfai",
   "license": "MIT",
   "primary_track": "Zyfai",
-  "submission_status": "hold_until_human_confirms_registration_and_submission",
+  "project_category": "yield",
+  "submission_status": "implementation_ready_pending_credentials",
   "identity": {
     "erc8004_status": "pending_live_registration",
     "operator_wallet": "TODO",
+    "reporter_wallet": "TODO",
     "treasury_wallet": "TODO",
     "ens_name": "TODO"
   },
   "compute_budget": {
-    "daily_usd_cap": 25,
-    "per_action_usd_cap": 2,
+    "daily_usd_cap": 114,
+    "per_action_usd_cap": 28,
     "live_mode_default": false
   },
   "safety_controls": [
     "dry_run_required",
     "whitelist_targets",
-    "spend_caps",
-    "time_window_permissions",
+    "per_action_caps",
+    "daily_caps",
+    "cooldown_windows",
     "env_only_secrets",
-    "pause_switch"
+    "pause_switch",
+    "receipt_anchoring"
   ],
   "autonomy_loop": [
     "discover",
@@ -29,6 +33,15 @@
     "dry_run",
     "execute",
     "verify"
+  ],
+  "partners": [
+    "Zyfai",
+    "Bankr Gateway",
+    "PayWithLocus",
+    "Venice",
+    "ERC-8004 Receipts",
+    "Uniswap",
+    "Lido"
   ],
   "overlap_targets": [
     "Bankr Gateway",
