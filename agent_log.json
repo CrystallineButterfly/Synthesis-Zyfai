@@ -595,5 +595,14 @@
       },
       "created_at": "2026-03-19T03:52:22+00:00"
     }
+  },
+  {
+    "timestamp": "2026-03-19T12:00:00+00:00",
+    "event": "track_specific_polish",
+    "actor": "coordinator",
+    "message": "Refreshed track-specific readiness docs, audit notes, and README status.",
+    "details": {
+      "status": "audited_offline_demo_ready_pending_live_partner_credentials"
+    }
   }
 ]
