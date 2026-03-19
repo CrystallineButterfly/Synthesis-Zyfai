@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
+from typing import Any
 
 
 @dataclass(frozen=True)
@@ -15,17 +16,17 @@ class PartnerRequirement:
     purpose: str
 
     @classmethod
-    def from_dict(cls, data: dict[str, object]) -> 'PartnerRequirement':
+    def from_dict(cls, data: dict[str, Any]) -> "PartnerRequirement":
         return cls(
-            name=str(data['name']),
-            docs_url=str(data['docs_url']),
-            env_vars=tuple(str(v) for v in data.get('env_vars', [])),
-            endpoint_env=str(data.get('endpoint_env', '')),
-            action_kind=str(data['action_kind']),
-            purpose=str(data['purpose']),
+            name=str(data["name"]),
+            docs_url=str(data["docs_url"]),
+            env_vars=tuple(str(value) for value in data.get("env_vars", [])),
+            endpoint_env=str(data.get("endpoint_env", "")),
+            action_kind=str(data["action_kind"]),
+            purpose=str(data["purpose"]),
         )
 
-    def to_dict(self) -> dict[str, object]:
+    def to_dict(self) -> dict[str, Any]:
         return asdict(self)
 
 
@@ -42,20 +43,20 @@ class ActionIntent:
     notes: tuple[str, ...]
 
     @classmethod
-    def from_dict(cls, data: dict[str, object]) -> 'ActionIntent':
+    def from_dict(cls, data: dict[str, Any]) -> "ActionIntent":
         return cls(
-            id=str(data['id']),
-            target=str(data['target']),
-            purpose=str(data['purpose']),
-            partner=str(data['partner']),
-            action_kind=str(data['action_kind']),
-            max_amount_usd=int(data['max_amount_usd']),
-            priority=int(data['priority']),
-            sensitivity=str(data['sensitivity']),
-            notes=tuple(str(v) for v in data.get('notes', [])),
+            id=str(data["id"]),
+            target=str(data["target"]),
+            purpose=str(data["purpose"]),
+            partner=str(data["partner"]),
+            action_kind=str(data["action_kind"]),
+            max_amount_usd=int(data["max_amount_usd"]),
+            priority=int(data["priority"]),
+            sensitivity=str(data["sensitivity"]),
+            notes=tuple(str(value) for value in data.get("notes", [])),
         )
 
-    def to_dict(self) -> dict[str, object]:
+    def to_dict(self) -> dict[str, Any]:
         return asdict(self)
 
 
@@ -80,46 +81,46 @@ class ProjectSpec:
     actions: tuple[ActionIntent, ...]
 
     @classmethod
-    def from_dict(cls, data: dict[str, object]) -> 'ProjectSpec':
+    def from_dict(cls, data: dict[str, Any]) -> "ProjectSpec":
         return cls(
-            repo_name=str(data['repo_name']),
-            project_name=str(data['project_name']),
-            track=str(data['track']),
-            pitch=str(data['pitch']),
-            idea_titles=tuple(str(v) for v in data['idea_titles']),
-            architecture_summary=str(data['architecture_summary']),
-            overlap_targets=tuple(str(v) for v in data['overlap_targets']),
-            primary_contract_name=str(data['primary_contract_name']),
-            primary_python_module=str(data['primary_python_module']),
-            category=str(data['category']),
-            daily_budget_usd=int(data['daily_budget_usd']),
-            per_action_budget_usd=int(data['per_action_budget_usd']),
-            cooldown_seconds=int(data['cooldown_seconds']),
-            discovery_inputs=tuple(dict(v) for v in data['discovery_inputs']),
-            live_demo_steps=tuple(str(v) for v in data['live_demo_steps']),
-            partners=tuple(PartnerRequirement.from_dict(v) for v in data['partners']),
-            actions=tuple(ActionIntent.from_dict(v) for v in data['actions']),
+            repo_name=str(data["repo_name"]),
+            project_name=str(data["project_name"]),
+            track=str(data["track"]),
+            pitch=str(data["pitch"]),
+            idea_titles=tuple(str(value) for value in data["idea_titles"]),
+            architecture_summary=str(data["architecture_summary"]),
+            overlap_targets=tuple(str(value) for value in data["overlap_targets"]),
+            primary_contract_name=str(data["primary_contract_name"]),
+            primary_python_module=str(data["primary_python_module"]),
+            category=str(data["category"]),
+            daily_budget_usd=int(data["daily_budget_usd"]),
+            per_action_budget_usd=int(data["per_action_budget_usd"]),
+            cooldown_seconds=int(data["cooldown_seconds"]),
+            discovery_inputs=tuple(dict(item) for item in data["discovery_inputs"]),
+            live_demo_steps=tuple(str(value) for value in data["live_demo_steps"]),
+            partners=tuple(PartnerRequirement.from_dict(item) for item in data["partners"]),
+            actions=tuple(ActionIntent.from_dict(item) for item in data["actions"]),
         )
 
-    def to_dict(self) -> dict[str, object]:
+    def to_dict(self) -> dict[str, Any]:
         return {
-            'repo_name': self.repo_name,
-            'project_name': self.project_name,
-            'track': self.track,
-            'pitch': self.pitch,
-            'idea_titles': list(self.idea_titles),
-            'architecture_summary': self.architecture_summary,
-            'overlap_targets': list(self.overlap_targets),
-            'primary_contract_name': self.primary_contract_name,
-            'primary_python_module': self.primary_python_module,
-            'category': self.category,
-            'daily_budget_usd': self.daily_budget_usd,
-            'per_action_budget_usd': self.per_action_budget_usd,
-            'cooldown_seconds': self.cooldown_seconds,
-            'discovery_inputs': list(self.discovery_inputs),
-            'live_demo_steps': list(self.live_demo_steps),
-            'partners': [p.to_dict() for p in self.partners],
-            'actions': [a.to_dict() for a in self.actions],
+            "repo_name": self.repo_name,
+            "project_name": self.project_name,
+            "track": self.track,
+            "pitch": self.pitch,
+            "idea_titles": list(self.idea_titles),
+            "architecture_summary": self.architecture_summary,
+            "overlap_targets": list(self.overlap_targets),
+            "primary_contract_name": self.primary_contract_name,
+            "primary_python_module": self.primary_python_module,
+            "category": self.category,
+            "daily_budget_usd": self.daily_budget_usd,
+            "per_action_budget_usd": self.per_action_budget_usd,
+            "cooldown_seconds": self.cooldown_seconds,
+            "discovery_inputs": list(self.discovery_inputs),
+            "live_demo_steps": list(self.live_demo_steps),
+            "partners": [partner.to_dict() for partner in self.partners],
+            "actions": [action.to_dict() for action in self.actions],
         }
 
     def partner_by_name(self, name: str) -> PartnerRequirement:

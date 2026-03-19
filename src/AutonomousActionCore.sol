@@ -35,6 +35,7 @@ contract AutonomousActionCore is AccessControl, Pausable, ReentrancyGuard {
     error DailyLimitExceeded(bytes32 actionId, uint256 amount, uint256 cap);
     error CooldownActive(bytes32 actionId, uint256 nextAllowedTimestamp);
     error OutsideWindow(bytes32 actionId, uint256 timestamp);
+    error ZeroAddressNotAllowed();
 
     event ActionPolicyConfigured(bytes32 indexed actionId, uint128 perActionCap, uint128 dailyCap, uint64 cooldown, uint64 validAfter, uint64 validBefore);
     event TargetApprovalUpdated(address indexed target, bool allowed);
@@ -44,6 +45,9 @@ contract AutonomousActionCore is AccessControl, Pausable, ReentrancyGuard {
     event ReceiptRecorded(bytes32 indexed subjectId, bytes32 indexed receiptDigest);
 
     constructor(address admin, address operator, address reporter) {
+        if (admin == address(0) || operator == address(0) || reporter == address(0)) {
+            revert ZeroAddressNotAllowed();
+        }
         _grantRole(DEFAULT_ADMIN_ROLE, admin);
         _grantRole(OPERATOR_ROLE, operator);
         _grantRole(REPORTER_ROLE, reporter);
@@ -53,6 +57,9 @@ contract AutonomousActionCore is AccessControl, Pausable, ReentrancyGuard {
     function unpause() external onlyRole(DEFAULT_ADMIN_ROLE) { _unpause(); }
 
     function setTargetApproval(address target, bool allowed) external onlyRole(DEFAULT_ADMIN_ROLE) {
+        if (target == address(0)) {
+            revert ZeroAddressNotAllowed();
+        }
         approvedTargets[target] = allowed;
         emit TargetApprovalUpdated(target, allowed);
     }

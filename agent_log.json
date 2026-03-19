@@ -7,5 +7,593 @@
     "details": {
       "status": "ready_for_credentials"
     }
+  },
+  {
+    "timestamp": "2026-03-19T03:30:29+00:00",
+    "stage": "discover",
+    "actor": "agent_runtime",
+    "message": "Ranked local signals.",
+    "details": {
+      "signals": [
+        {
+          "name": "yield_state",
+          "description": "Current yield, strategy selection, and reserves.",
+          "score": 95
+        },
+        {
+          "name": "compute_budget",
+          "description": "Spendable inference headroom.",
+          "score": 90
+        },
+        {
+          "name": "payout_plan",
+          "description": "Who gets paid from the available yield.",
+          "score": 85
+        },
+        {
+          "name": "receipts",
+          "description": "Proofs and verification metadata.",
+          "score": 80
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:30:29+00:00",
+    "stage": "plan",
+    "actor": "agent_runtime",
+    "message": "Built bounded plan.",
+    "details": {
+      "plan_id": "0x46992c6259fd84f89771f1295c8167761387e1c5885cdbb31a644cbec8bb0117"
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:30:29+00:00",
+    "stage": "dry_run",
+    "actor": "agent_runtime",
+    "message": "Prepared partner previews.",
+    "details": {
+      "simulation_hash": "0x8e6affcf0140c336f7409bb61409a43b992b2879a57e95862e376326f00e4241"
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:30:29+00:00",
+    "stage": "execute",
+    "actor": "agent_runtime",
+    "message": "Skipped live execution.",
+    "details": {
+      "missing_env": [
+        "BANKR_API_KEY",
+        "BANKR_CHAT_COMPLETIONS_URL",
+        "BANKR_MODEL",
+        "LOCUS_API_KEY",
+        "LOCUS_PAYMENT_URL",
+        "RPC_URL",
+        "UNISWAP_API_KEY",
+        "UNISWAP_QUOTE_URL",
+        "VENICE_API_KEY",
+        "VENICE_CHAT_COMPLETIONS_URL",
+        "VENICE_MODEL",
+        "ZYFAI_API_KEY",
+        "ZYFAI_STRATEGY_URL"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:30:29+00:00",
+    "stage": "verify",
+    "actor": "agent_runtime",
+    "message": "Wrote verification.",
+    "details": {
+      "status": "verified",
+      "project_name": "YieldMind Engine",
+      "track": "Zyfai",
+      "plan_id": "0x46992c6259fd84f89771f1295c8167761387e1c5885cdbb31a644cbec8bb0117",
+      "simulation_hash": "0x8e6affcf0140c336f7409bb61409a43b992b2879a57e95862e376326f00e4241",
+      "execution_status": "awaiting_credentials",
+      "tx_ids": [],
+      "created_at": "2026-03-19T03:30:29+00:00"
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:30:29+00:00",
+    "stage": "discover",
+    "actor": "agent_runtime",
+    "message": "Ranked local signals.",
+    "details": {
+      "signals": [
+        {
+          "name": "yield_state",
+          "description": "Current yield, strategy selection, and reserves.",
+          "score": 95
+        },
+        {
+          "name": "compute_budget",
+          "description": "Spendable inference headroom.",
+          "score": 90
+        },
+        {
+          "name": "payout_plan",
+          "description": "Who gets paid from the available yield.",
+          "score": 85
+        },
+        {
+          "name": "receipts",
+          "description": "Proofs and verification metadata.",
+          "score": 80
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:30:29+00:00",
+    "stage": "plan",
+    "actor": "agent_runtime",
+    "message": "Built bounded plan.",
+    "details": {
+      "plan_id": "0x46992c6259fd84f89771f1295c8167761387e1c5885cdbb31a644cbec8bb0117"
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:30:29+00:00",
+    "stage": "dry_run",
+    "actor": "agent_runtime",
+    "message": "Prepared partner previews.",
+    "details": {
+      "simulation_hash": "0x8e6affcf0140c336f7409bb61409a43b992b2879a57e95862e376326f00e4241"
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:30:29+00:00",
+    "stage": "execute",
+    "actor": "agent_runtime",
+    "message": "Skipped live execution.",
+    "details": {
+      "missing_env": [
+        "BANKR_API_KEY",
+        "BANKR_CHAT_COMPLETIONS_URL",
+        "BANKR_MODEL",
+        "LOCUS_API_KEY",
+        "LOCUS_PAYMENT_URL",
+        "RPC_URL",
+        "UNISWAP_API_KEY",
+        "UNISWAP_QUOTE_URL",
+        "VENICE_API_KEY",
+        "VENICE_CHAT_COMPLETIONS_URL",
+        "VENICE_MODEL",
+        "ZYFAI_API_KEY",
+        "ZYFAI_STRATEGY_URL"
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:30:29+00:00",
+    "stage": "verify",
+    "actor": "agent_runtime",
+    "message": "Wrote verification.",
+    "details": {
+      "status": "verified",
+      "project_name": "YieldMind Engine",
+      "track": "Zyfai",
+      "plan_id": "0x46992c6259fd84f89771f1295c8167761387e1c5885cdbb31a644cbec8bb0117",
+      "simulation_hash": "0x8e6affcf0140c336f7409bb61409a43b992b2879a57e95862e376326f00e4241",
+      "execution_status": "awaiting_credentials",
+      "tx_ids": [],
+      "created_at": "2026-03-19T03:30:29+00:00"
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:39:23.678178+00:00",
+    "stage": "security_review",
+    "actor": "audit_pass",
+    "message": "Completed the shared hardening and offline-artifact audit pass.",
+    "details": {
+      "status": "audited_ready_pending_live_credentials",
+      "primary_contract": "YieldMindController.sol"
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:49:15+00:00",
+    "stage": "discover",
+    "actor": "agent_runtime",
+    "message": "Ranked local signals.",
+    "details": {
+      "signals": [
+        {
+          "name": "yield_state",
+          "description": "Current yield, strategy selection, and reserves.",
+          "score": 95
+        },
+        {
+          "name": "compute_budget",
+          "description": "Spendable inference headroom.",
+          "score": 90
+        },
+        {
+          "name": "payout_plan",
+          "description": "Who gets paid from the available yield.",
+          "score": 85
+        },
+        {
+          "name": "receipts",
+          "description": "Proofs and verification metadata.",
+          "score": 80
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:49:15+00:00",
+    "stage": "plan",
+    "actor": "agent_runtime",
+    "message": "Built bounded plan for every repo action.",
+    "details": {
+      "plan_id": "0x794b6893da5d20ba0099f317e7074347c35192c2f959fa8f4d623539bb6509d5",
+      "action_count": 7
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:49:15+00:00",
+    "stage": "dry_run",
+    "actor": "agent_runtime",
+    "message": "Prepared partner previews.",
+    "details": {
+      "simulation_hash": "0xa409cebbe35b18ae8bc20edd929a5df60740d5d730d64ba8090c99c964e8b539"
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:49:15+00:00",
+    "stage": "execute",
+    "actor": "agent_runtime",
+    "message": "Prepared offline artifacts and skipped network execution.",
+    "details": {
+      "missing_env": [
+        "BANKR_API_KEY",
+        "BANKR_CHAT_COMPLETIONS_URL",
+        "BANKR_MODEL",
+        "LOCUS_API_KEY",
+        "LOCUS_PAYMENT_URL",
+        "UNISWAP_API_KEY",
+        "UNISWAP_QUOTE_URL",
+        "VENICE_API_KEY",
+        "VENICE_CHAT_COMPLETIONS_URL",
+        "VENICE_MODEL",
+        "ZYFAI_API_KEY",
+        "ZYFAI_STRATEGY_URL"
+      ],
+      "artifact_count": 2
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:49:15+00:00",
+    "stage": "verify",
+    "actor": "agent_runtime",
+    "message": "Wrote verification.",
+    "details": {
+      "status": "verified",
+      "project_name": "YieldMind Engine",
+      "track": "Zyfai",
+      "plan_id": "0x794b6893da5d20ba0099f317e7074347c35192c2f959fa8f4d623539bb6509d5",
+      "simulation_hash": "0xa409cebbe35b18ae8bc20edd929a5df60740d5d730d64ba8090c99c964e8b539",
+      "execution_status": "offline_prepared",
+      "tx_ids": [],
+      "artifact_paths": [
+        "artifacts/onchain_intents/erc_8004_receipts_receipt_anchor.json",
+        "artifacts/onchain_intents/lido_yield_route.json"
+      ],
+      "partner_statuses": {
+        "Zyfai": "awaiting_credentials",
+        "Bankr Gateway": "awaiting_credentials",
+        "PayWithLocus": "awaiting_credentials",
+        "Venice": "awaiting_credentials",
+        "ERC-8004 Receipts": "prepared_contract_call",
+        "Uniswap": "awaiting_credentials",
+        "Lido": "prepared_contract_call"
+      },
+      "created_at": "2026-03-19T03:49:15+00:00"
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:50:53+00:00",
+    "stage": "discover",
+    "actor": "agent_runtime",
+    "message": "Ranked local signals.",
+    "details": {
+      "signals": [
+        {
+          "name": "yield_state",
+          "description": "Current yield, strategy selection, and reserves.",
+          "score": 95
+        },
+        {
+          "name": "compute_budget",
+          "description": "Spendable inference headroom.",
+          "score": 90
+        },
+        {
+          "name": "payout_plan",
+          "description": "Who gets paid from the available yield.",
+          "score": 85
+        },
+        {
+          "name": "receipts",
+          "description": "Proofs and verification metadata.",
+          "score": 80
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:50:53+00:00",
+    "stage": "plan",
+    "actor": "agent_runtime",
+    "message": "Built bounded plan for every repo action.",
+    "details": {
+      "plan_id": "0xc47fbb114c081204cb8fd89e4d8fbad8c8feaf9bff5e4f870a22e97ef4e4f351",
+      "action_count": 7
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:50:53+00:00",
+    "stage": "dry_run",
+    "actor": "agent_runtime",
+    "message": "Prepared partner previews.",
+    "details": {
+      "simulation_hash": "0x18db81e6d99cd99b155a992974a7751874c2224a28c0003585d9e219b2132019"
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:50:53+00:00",
+    "stage": "execute",
+    "actor": "agent_runtime",
+    "message": "Prepared offline artifacts and skipped network execution.",
+    "details": {
+      "missing_env": [
+        "BANKR_API_KEY",
+        "BANKR_CHAT_COMPLETIONS_URL",
+        "BANKR_MODEL",
+        "LOCUS_API_KEY",
+        "LOCUS_PAYMENT_URL",
+        "UNISWAP_API_KEY",
+        "UNISWAP_QUOTE_URL",
+        "VENICE_API_KEY",
+        "VENICE_CHAT_COMPLETIONS_URL",
+        "VENICE_MODEL",
+        "ZYFAI_API_KEY",
+        "ZYFAI_STRATEGY_URL"
+      ],
+      "artifact_count": 2
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:50:53+00:00",
+    "stage": "verify",
+    "actor": "agent_runtime",
+    "message": "Wrote verification.",
+    "details": {
+      "status": "verified",
+      "project_name": "YieldMind Engine",
+      "track": "Zyfai",
+      "plan_id": "0xc47fbb114c081204cb8fd89e4d8fbad8c8feaf9bff5e4f870a22e97ef4e4f351",
+      "simulation_hash": "0x18db81e6d99cd99b155a992974a7751874c2224a28c0003585d9e219b2132019",
+      "execution_status": "offline_prepared",
+      "tx_ids": [],
+      "artifact_paths": [
+        "artifacts/onchain_intents/erc_8004_receipts_receipt_anchor.json",
+        "artifacts/onchain_intents/lido_yield_route.json"
+      ],
+      "partner_statuses": {
+        "Zyfai": "awaiting_credentials",
+        "Bankr Gateway": "awaiting_credentials",
+        "PayWithLocus": "awaiting_credentials",
+        "Venice": "awaiting_credentials",
+        "ERC-8004 Receipts": "prepared_contract_call",
+        "Uniswap": "awaiting_credentials",
+        "Lido": "prepared_contract_call"
+      },
+      "created_at": "2026-03-19T03:50:53+00:00"
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:51:49+00:00",
+    "stage": "discover",
+    "actor": "agent_runtime",
+    "message": "Ranked local signals.",
+    "details": {
+      "signals": [
+        {
+          "name": "yield_state",
+          "description": "Current yield, strategy selection, and reserves.",
+          "score": 95
+        },
+        {
+          "name": "compute_budget",
+          "description": "Spendable inference headroom.",
+          "score": 90
+        },
+        {
+          "name": "payout_plan",
+          "description": "Who gets paid from the available yield.",
+          "score": 85
+        },
+        {
+          "name": "receipts",
+          "description": "Proofs and verification metadata.",
+          "score": 80
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:51:49+00:00",
+    "stage": "plan",
+    "actor": "agent_runtime",
+    "message": "Built bounded plan for every repo action.",
+    "details": {
+      "plan_id": "0xd0974e87e906eaf4b88873a7588dcb4ab650c96ce480febdef6d33dac3584221",
+      "action_count": 7
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:51:49+00:00",
+    "stage": "dry_run",
+    "actor": "agent_runtime",
+    "message": "Prepared partner previews.",
+    "details": {
+      "simulation_hash": "0x338cc8f0080ba092280048ce422d1300a306c2b7a866e24f99d6376949235ea9"
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:51:49+00:00",
+    "stage": "execute",
+    "actor": "agent_runtime",
+    "message": "Prepared offline artifacts and skipped network execution.",
+    "details": {
+      "missing_env": [
+        "BANKR_API_KEY",
+        "BANKR_CHAT_COMPLETIONS_URL",
+        "BANKR_MODEL",
+        "LOCUS_API_KEY",
+        "LOCUS_PAYMENT_URL",
+        "UNISWAP_API_KEY",
+        "UNISWAP_QUOTE_URL",
+        "VENICE_API_KEY",
+        "VENICE_CHAT_COMPLETIONS_URL",
+        "VENICE_MODEL",
+        "ZYFAI_API_KEY",
+        "ZYFAI_STRATEGY_URL"
+      ],
+      "artifact_count": 2
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:51:49+00:00",
+    "stage": "verify",
+    "actor": "agent_runtime",
+    "message": "Wrote verification.",
+    "details": {
+      "status": "verified",
+      "project_name": "YieldMind Engine",
+      "track": "Zyfai",
+      "plan_id": "0xd0974e87e906eaf4b88873a7588dcb4ab650c96ce480febdef6d33dac3584221",
+      "simulation_hash": "0x338cc8f0080ba092280048ce422d1300a306c2b7a866e24f99d6376949235ea9",
+      "execution_status": "offline_prepared",
+      "tx_ids": [],
+      "artifact_paths": [
+        "artifacts/onchain_intents/erc_8004_receipts_receipt_anchor.json",
+        "artifacts/onchain_intents/lido_yield_route.json"
+      ],
+      "partner_statuses": {
+        "Zyfai": "awaiting_credentials",
+        "Bankr Gateway": "awaiting_credentials",
+        "PayWithLocus": "awaiting_credentials",
+        "Venice": "awaiting_credentials",
+        "ERC-8004 Receipts": "prepared_contract_call",
+        "Uniswap": "awaiting_credentials",
+        "Lido": "prepared_contract_call"
+      },
+      "created_at": "2026-03-19T03:51:49+00:00"
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:52:22+00:00",
+    "stage": "discover",
+    "actor": "agent_runtime",
+    "message": "Ranked local signals.",
+    "details": {
+      "signals": [
+        {
+          "name": "yield_state",
+          "description": "Current yield, strategy selection, and reserves.",
+          "score": 95
+        },
+        {
+          "name": "compute_budget",
+          "description": "Spendable inference headroom.",
+          "score": 90
+        },
+        {
+          "name": "payout_plan",
+          "description": "Who gets paid from the available yield.",
+          "score": 85
+        },
+        {
+          "name": "receipts",
+          "description": "Proofs and verification metadata.",
+          "score": 80
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:52:22+00:00",
+    "stage": "plan",
+    "actor": "agent_runtime",
+    "message": "Built bounded plan for every repo action.",
+    "details": {
+      "plan_id": "0x8e235ad8e6fc73f0f2b373372db7c74aaf2a5a3ca34bf11834f08637e4b1fed4",
+      "action_count": 7
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:52:22+00:00",
+    "stage": "dry_run",
+    "actor": "agent_runtime",
+    "message": "Prepared partner previews.",
+    "details": {
+      "simulation_hash": "0xaefa9dac9b985d57654ad8f4e7d7e561b35fe5d2aa1b4af20506e78cb10e0b47"
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:52:22+00:00",
+    "stage": "execute",
+    "actor": "agent_runtime",
+    "message": "Prepared offline artifacts and skipped network execution.",
+    "details": {
+      "missing_env": [
+        "BANKR_API_KEY",
+        "BANKR_CHAT_COMPLETIONS_URL",
+        "BANKR_MODEL",
+        "LOCUS_API_KEY",
+        "LOCUS_PAYMENT_URL",
+        "UNISWAP_API_KEY",
+        "UNISWAP_QUOTE_URL",
+        "VENICE_API_KEY",
+        "VENICE_CHAT_COMPLETIONS_URL",
+        "VENICE_MODEL",
+        "ZYFAI_API_KEY",
+        "ZYFAI_STRATEGY_URL"
+      ],
+      "artifact_count": 2
+    }
+  },
+  {
+    "timestamp": "2026-03-19T03:52:22+00:00",
+    "stage": "verify",
+    "actor": "agent_runtime",
+    "message": "Wrote verification.",
+    "details": {
+      "status": "verified",
+      "project_name": "YieldMind Engine",
+      "track": "Zyfai",
+      "plan_id": "0x8e235ad8e6fc73f0f2b373372db7c74aaf2a5a3ca34bf11834f08637e4b1fed4",
+      "simulation_hash": "0xaefa9dac9b985d57654ad8f4e7d7e561b35fe5d2aa1b4af20506e78cb10e0b47",
+      "execution_status": "offline_prepared",
+      "tx_ids": [],
+      "artifact_paths": [
+        "artifacts/onchain_intents/erc_8004_receipts_receipt_anchor.json",
+        "artifacts/onchain_intents/lido_yield_route.json"
+      ],
+      "partner_statuses": {
+        "Zyfai": "awaiting_credentials",
+        "Bankr Gateway": "awaiting_credentials",
+        "PayWithLocus": "awaiting_credentials",
+        "Venice": "awaiting_credentials",
+        "ERC-8004 Receipts": "prepared_contract_call",
+        "Uniswap": "awaiting_credentials",
+        "Lido": "prepared_contract_call"
+      },
+      "created_at": "2026-03-19T03:52:22+00:00"
+    }
   }
 ]

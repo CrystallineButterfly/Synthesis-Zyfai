@@ -4,7 +4,7 @@
   "license": "MIT",
   "primary_track": "Zyfai",
   "project_category": "yield",
-  "submission_status": "implementation_ready_pending_credentials",
+  "submission_status": "audited_ready_pending_live_credentials",
   "identity": {
     "erc8004_status": "pending_live_registration",
     "operator_wallet": "TODO",
