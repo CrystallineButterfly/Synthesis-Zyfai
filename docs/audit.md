@@ -43,6 +43,14 @@ when live network credentials are absent. Network-only partners still report mis
 `cast send` output is now parsed for `transactionHash` explicitly before falling back to the
 raw stdout payload.
 
+## Track-specific trust boundaries
+
+- primary wrapper contract: `YieldMindController`
+- live-only partners: Zyfai, Bankr Gateway, PayWithLocus, Venice, Uniswap
+- offline-prepared partners: ERC-8004 Receipts (prepared_contract_call), Lido (prepared_contract_call)
+- highest-sensitivity actions: bankr_gateway_compute_route, venice_private_analysis
+- latest verification artifact: `artifacts/verification/0x8e235ad8e6fc73f0f2b373372db7c74aaf2a5a3ca34bf11834f08637e4b1fed4.json`
+
 ## Current posture
 
 ### Good
