@@ -43,6 +43,15 @@ when live network credentials are absent. Network-only partners still report mis
 `cast send` output is now parsed for `transactionHash` explicitly before falling back to the
 raw stdout payload.
 
+### Fixed: execution now requires a recorded dry run
+
+- `src/AutonomousActionHub.sol`
+- `test/*.t.sol`
+
+The shared hub recorded dry-run hashes but previously allowed both direct and queued execution
+paths to proceed without checking that a dry run existed. Both execution paths now revert when
+`lastDryRun[actionId]` is unset, and the Foundry suite covers the direct and queued revert cases.
+
 ## Track-specific trust boundaries
 
 - primary wrapper contract: `YieldMindController`
@@ -56,8 +65,10 @@ raw stdout payload.
 ### Good
 
 - no `tx.origin` authorization in repo contracts
+- repo-specific wrapper contracts add no extra state-changing logic beyond construction, so
+  the shared hub audit covers the full Solidity surface
 - shared execution remains gated by approved targets, approved selectors, caps, cooldowns,
-  validity windows, pause state, and receipt anchoring
+  validity windows, pause state, dry-run enforcement, and receipt anchoring
 - local runs now emit reviewable onchain-intent and Filecoin-evidence artifacts without
   needing live partner credentials
 - verification output now reports partner statuses and artifact paths
@@ -65,6 +76,7 @@ raw stdout payload.
 ### Expected low-severity notes
 
 - the shared core intentionally uses `block.timestamp` for cooldown and validity windows
+- liquid balance is still a trusted reporter input and should be backed by a hardened reporting path
 - admin roles remain powerful and should move to multisig control for production use
 
 ## Recommended production posture

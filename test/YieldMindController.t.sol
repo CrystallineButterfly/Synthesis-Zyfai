@@ -24,6 +24,8 @@ contract YieldMindControllerTest is Test {
         vm.stopPrank();
         vm.prank(reporter);
         controller.reportLiquidBalance(150 ether);
+        vm.prank(operator);
+        controller.recordDryRun(actionId, keccak256("sim"));
     }
 
     function testExecuteBoundedActionStoresDigest() public {
@@ -74,4 +76,43 @@ contract YieldMindControllerTest is Test {
             keccak256("call")
         );
     }
+
+    function testExecuteBoundedActionRevertsWithoutDryRun() public {
+        YieldMindController freshController = new YieldMindController(admin, operator, reporter, 100 ether);
+        vm.startPrank(admin);
+        freshController.configureActionPolicy(actionId, 20 ether, 40 ether, 1 hours, 0, 0);
+        freshController.setTargetApproval(target, true);
+        freshController.setSelectorApproval(selector, true);
+        vm.stopPrank();
+        vm.prank(reporter);
+        freshController.reportLiquidBalance(150 ether);
+
+        vm.prank(operator);
+        vm.expectRevert(abi.encodeWithSignature("MissingDryRun(bytes32)", actionId));
+        freshController.executeBoundedAction(
+            actionId,
+            target,
+            selector,
+            10 ether,
+            keccak256("call")
+        );
+    }
+
+    function testExecuteQueuedTaskRevertsWithoutDryRun() public {
+        YieldMindController freshController = new YieldMindController(admin, operator, reporter, 100 ether);
+        vm.startPrank(admin);
+        freshController.configureActionPolicy(actionId, 20 ether, 40 ether, 1 hours, 0, 0);
+        freshController.setTargetApproval(target, true);
+        freshController.setSelectorApproval(selector, true);
+        vm.stopPrank();
+        vm.prank(reporter);
+        freshController.reportLiquidBalance(150 ether);
+        vm.prank(reporter);
+        freshController.queueTask(actionId, target, selector, 5 ether, keccak256("evidence"));
+
+        vm.prank(operator);
+        vm.expectRevert(abi.encodeWithSignature("MissingDryRun(bytes32)", actionId));
+        freshController.executeQueuedTask(actionId, keccak256("task-call"));
+    }
+
 }

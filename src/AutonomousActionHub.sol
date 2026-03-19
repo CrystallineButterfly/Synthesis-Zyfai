@@ -33,6 +33,7 @@ contract AutonomousActionHub is AutonomousActionCore {
     error UnknownTask(bytes32 actionId);
     error TaskAlreadyExecuted(bytes32 actionId);
     error BalanceNotReported();
+    error MissingDryRun(bytes32 actionId);
 
     event LiquidBalanceReported(uint256 liquidBalance, uint64 reportedAt);
 
@@ -76,6 +77,9 @@ contract AutonomousActionHub is AutonomousActionCore {
         uint256 liquidBalance = trackedLiquidBalance;
         if (lastBalanceReportAt == 0) {
             revert BalanceNotReported();
+        }
+        if (lastDryRun[actionId] == bytes32(0)) {
+            revert MissingDryRun(actionId);
         }
         if (amount > spendableBuffer()) {
             revert PrincipalFloorBreached(liquidBalance, principalFloor, amount);
@@ -167,6 +171,9 @@ contract AutonomousActionHub is AutonomousActionCore {
         uint256 liquidBalance = trackedLiquidBalance;
         if (lastBalanceReportAt == 0) {
             revert BalanceNotReported();
+        }
+        if (lastDryRun[actionId] == bytes32(0)) {
+            revert MissingDryRun(actionId);
         }
         if (task.amount > spendableBuffer()) {
             revert PrincipalFloorBreached(liquidBalance, principalFloor, task.amount);
